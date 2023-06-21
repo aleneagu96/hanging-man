@@ -1,42 +1,52 @@
 import React, {useState} from 'react';
 import {TextField,Button} from '@mui/material';
+import './initialSetup.css';
 
-function InitialSetup(){
+function InitialSetup({handleStartGame}){
 
-    const[inputText, setInputText]=useState('');
-    const[inputText2, setInputText2]=useState('');
     
-    // const[isFirstStep, setIsFirstStep] = useState(true);
+    const[playerName, setPlayerName]=useState('');
+    const[playerName2, setPlayerName2]=useState('');
+    const[finalValue, setFinalValue]= useState('');
+    const[finalValue2, setFinalValue2]= useState('');
+
     
     const handleInputChange = (event) => {
-        setInputText(event.target.value);
+        setPlayerName(event.target.value);
       };
 
       const handleInputChange2 = (event) => {
-        setInputText2(event.target.value);
+        setPlayerName2(event.target.value);
       };
 
       const handleSave = () => {
-        console.log('Player 1:', inputText);
+        setFinalValue(playerName)
+        console.log('Player 1: ', playerName);
       };  
 
       const handleSave2 = () => {
-        console.log('Player 2:', inputText2);
+        setFinalValue2(playerName2)
+        console.log('Player 2: ', playerName2);
       };
 
-    return(
-        <div classsname="initial-setup">Hanging Man
-                <div classsname="col">
-                    <TextField id="outlined-basic" label="Name" variant="outlined" value={inputText} onChange={handleInputChange} />
-                    <Button variant="outlined" onClick={handleSave}>Submit</Button>
-                </div>
-                <div>
-                    <TextField id="outlined-basic" label="Name" variant="outlined" value={inputText2} onChange={handleInputChange2} />
-                    <Button variant="outlined" onClick={handleSave2}>Submit</Button>
-                </div>
+      const handleSubmit = () => {
+        handleStartGame();
+      }
 
- 
-        </div>
+    return(
+        <span >Hanging Man
+                <div classsname="input">
+                    <TextField id="outlined-basic" label="Name" variant="outlined" value={playerName} onChange={handleInputChange} />
+                    <Button variant="outlined" onClick={handleSave}>Submit</Button>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" value={playerName2} onChange={handleInputChange2} />
+                    <Button variant="outlined" onClick={handleSave2}>Submit</Button>
+                    <Button onClick={handleSubmit}>Start Game</Button>
+                </div>
+                <div classsname="input">
+                <p>Player 1:{finalValue}</p>
+                <p>Player 2:{finalValue2}</p>
+                </div>
+        </span>
     )
 }
 
