@@ -21,12 +21,12 @@ function InitialSetup({handleStartGame}){
 
       const handleSave = () => {
         setFinalValue(playerName)
-        console.log('Player 1: ', playerName);
+        // console.log('Player 1: ', playerName);
       };  
 
       const handleSave2 = () => {
         setFinalValue2(playerName2)
-        console.log('Player 2: ', playerName2);
+        // console.log('Player 2: ', playerName2);
       };
 
       const handleSubmit = () => {

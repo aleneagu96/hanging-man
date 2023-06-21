@@ -5,13 +5,14 @@ import GamePlay from './components/GamePlay';
 
 function App() {
 
-      const[isFirstStep, setIsFirstStep] = useState(false);
+      const[isFirstStep, setIsFirstStep] = useState(true);
       const[playerName, setPlayerName]= useState('');
       const[playerName2, setPlayerName2]= useState('');
 
       const handleStartGame = () => {
-        if(!playerName && !playerName2) {
+        if (!(playerName && playerName2)) {
           setIsFirstStep(false);
+          console.log(playerName, playerName2)
         } else {
           alert("Please enter player names")
         }
