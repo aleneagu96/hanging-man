@@ -3,19 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     text-align: center;
+    width: 90%;
   }
   
-  .table-container {
-    margin-top: 20px;
+  .detable{
+    max-width: fit-content;
   }
-  
-  input[type='text'],
-  button {
-    margin-top: 10px;
-  }
-
-  
-
-  

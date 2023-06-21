@@ -4,19 +4,8 @@
   align-items: center;
 }
 
-.input {
-  display: flex;
-  max-width: 700px; 
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.inputbox {
-  flex: 1;
-
-}
-
-.submit-button {
-  flex: 0 0 auto;
-  width: auto;
+.rules{
+  padding-top: 350px;
+  max-width: 50%;
+  align-items: center;
 }

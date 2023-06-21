@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 // import randomWords from 'random-words';
-import './gamePlay.css'
+import './gamePlay.css';
+import { Typography, TextField, Button, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 
 function GamePlay() {
-  const [secretWord, setSecretWord] = useState('HELLO'); 
+  const [secretWord, setSecretWord] = useState('REACT'); 
   const [guessedWord, setGuessedWord] = useState('_'.repeat(secretWord.length));
   const [wrongGuesses, setWrongGuesses] = useState([]);
   const [inputLetter, setInputLetter] = useState([]);
   const [inputAnswer, setInputAnswer] = useState('');
   const [turnCount, setTurnCount] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState([]);
-
+  
+  
   // useEffect(() => {
   //   setSecretWord(randomWords());
   // }, [])
@@ -122,52 +124,65 @@ function GamePlay() {
 
   return (
     <div className='container'>
-      <h2>Hangman Game</h2>
-
+      <Typography vaiant="h2">Hangman</Typography>
       <div>
-        <h3>Secret Word</h3>
-        <p>{guessedWord.split('').join(' ')}</p>
+      <Typography variant="h4">Secret Word</Typography>
+      <Typography variant="body1">{guessedWord.split('').join(' ')}</Typography>
       </div>
 
       <div>
-        <h3>Guess a letter</h3>
-        <input
+        <Typography variant="h6">Guess a letter</Typography>
+        <TextField
+          size="small"
+          className='input-field'
           type="text"
           value={inputLetter}
           onChange={handleLetterInputChange}
           maxLength={1}
-          style={{textTransform: "uppercase"}}
         />
-        <button onClick={handleLetterGuess}>Submit</button>
+        <Button variant="contained" onClick={handleLetterGuess}>Submit</Button>
       </div>
 
       <div>
-        <h3>Guess the word</h3>
-        <input
+        <Typography variant="h6">Guess the word</Typography>
+        <TextField
+          size="small"
           type="text"
           value={inputAnswer}
           onChange={handleAnswerInputChange}
         />
-        <button onClick={handleAnswerGuess}>Submit</button>
+        <Button variant="contained" onClick={handleAnswerGuess}>Submit</Button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Index</th>
-            <th>Letter</th>
-            <th>Valid</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>{renderTableRows()}</tbody>
-      </table>
-
+      <Table className='detable' size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Index</TableCell>
+            <TableCell>Letter</TableCell>
+            <TableCell>Valid</TableCell>
+            <TableCell>Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {renderTableRows()}
+        </TableBody>
+      </Table>
+      <br></br>
       <div>
-        <h3>Wrong Guesses</h3>
-        <p>{wrongGuesses.join(', ')}</p>
+      <Typography variant="h7">Wrong guesses:</Typography>
+      <br></br>
+      <Typography variant="body6">{wrongGuesses.join(', ')}</Typography>
         <br></br>
-        <p>{renderWrongGuessesTable()}</p>
+
+      {/* <div>
+       <Table>
+        <TableBody>
+        {renderWrongGuessesTable()}
+        </TableBody>
+      </Table>  */}
+        
+      {/* </div> */}
+      
         
       </div>
 
