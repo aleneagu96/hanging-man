@@ -31,35 +31,44 @@ function InitialSetup({ handleStartGame }) {
   }, [finalValue, finalValue2, handleStartGame]);
 
   return (
-    <span>
-      Hanging Man
+    <div className='hang'>
+      <p>Hanging Man</p>
       <div className="input">
         <TextField
+          className='inputbox'
           id="outlined-basic"
           label="Name"
           variant="outlined"
           value={playerName}
           onChange={handleInputChange}
+          size="small"
         />
-        <Button variant="outlined" onClick={handleSave}>
+        <Button
+          className='submit-button'
+          variant="outlined"
+          size="big"
+          onClick={handleSave}
+        >
           Submit
         </Button>
         <TextField
+          className='inputbox'
           id="outlined-basic"
           label="Name"
+          size="small"
           variant="outlined"
           value={playerName2}
           onChange={handleInputChange2}
         />
-        <Button variant="outlined" onClick={handleSave2}>
+        <Button
+          className='submit-button'
+          variant="outlined"
+          onClick={handleSave2}
+        >
           Submit
         </Button>
       </div>
-      <div className="input">
-        <p>Player 1: {finalValue}</p>
-        <p>Player 2: {finalValue2}</p>
-      </div>
-    </span>
+    </div>
   );
 }
 

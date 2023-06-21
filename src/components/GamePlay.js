@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import randomWords from 'random-words';
+import './gamePlay.css'
 
 function GamePlay() {
   const [secretWord, setSecretWord] = useState('HELLO'); 
@@ -120,7 +121,7 @@ function GamePlay() {
   
 
   return (
-    <div>
+    <div className='container'>
       <h2>Hangman Game</h2>
 
       <div>
