@@ -18,6 +18,12 @@ function GamePlay() {
     const letter = inputLetter.toUpperCase();
     setInputLetter('');
 
+    // Check if the letter is already guessed
+    if(guessedLetters.includes(letter)) {
+      alert('Letter already guessed. Try a different letter');
+      return;
+    }
+
     // Check if the letter is correct
     const isLetterCorrect = secretWord.includes(letter);
     const newGuessedWord = guessedWord
@@ -27,6 +33,9 @@ function GamePlay() {
 
     if (!isLetterCorrect) {
       setWrongGuesses([...wrongGuesses, letter]);
+    if(wrongGuesses.length >=4) {
+      alert('Game over. You have reached the maximul number of wrong guesses')
+    }
     }
 
     setGuessedWord(newGuessedWord);
@@ -38,14 +47,20 @@ function GamePlay() {
   };
 
   const handleAnswerGuess = () => {
+    if (wrongGuesses.length >=4) {
+      alert('Game over. You have reached the maximum number of guesses');
+      return;
+    }
+
     const answer = inputAnswer.toUpperCase();
     setInputAnswer('');
 
     if (answer === secretWord) {
-      alert("Congratulations, you got the word")
+      alert("Congratulations, you guessed the word")
       setGuessedWord(answer);
     } else {
       alert("Wrong answer")
+      setWrongGuesses([...wrongGuesses, answer])
     }
       setTurnCount(turnCount + 1);
   };
@@ -59,7 +74,12 @@ function GamePlay() {
   };
 
   const handleAnswerInputChange = (event) => {
-    setInputAnswer(event.target.value);
+    const inputValue=event.target.value;
+    const lettersOnly = /^[A-Za-z]+$/;
+
+    if(lettersOnly.test(inputValue) || inputValue === ''){
+      setInputAnswer(inputValue.toUpperCase());
+    }
   };
 
   const renderWrongGuessesTable = () => {
@@ -104,6 +124,11 @@ function GamePlay() {
       <h2>Hangman Game</h2>
 
       <div>
+        <h3>Secret Word</h3>
+        <p>{guessedWord.split('').join(' ')}</p>
+      </div>
+
+      <div>
         <h3>Guess a letter</h3>
         <input
           type="text"
@@ -125,11 +150,6 @@ function GamePlay() {
         <button onClick={handleAnswerGuess}>Submit</button>
       </div>
 
-      <div>
-        <h3>Guessed Word</h3>
-        <p>{guessedWord.split('').join(' ')}</p>
-      </div>
-
       <table>
         <thead>
           <tr>
@@ -145,7 +165,9 @@ function GamePlay() {
       <div>
         <h3>Wrong Guesses</h3>
         <p>{wrongGuesses.join(', ')}</p>
-        {renderWrongGuessesTable()}
+        <br></br>
+        <p>{renderWrongGuessesTable()}</p>
+        
       </div>
 
 
