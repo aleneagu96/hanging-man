@@ -37,7 +37,7 @@ function GamePlay() {
     if (!isLetterCorrect) {
       setWrongGuesses([...wrongGuesses, letter]);
     if(wrongGuesses.length >=4) {
-      alert('Game over. You have reached the maximul number of wrong guesses')
+      alert('Game over. You have reached the maximum number of wrong guesses')
     }
     }
 
